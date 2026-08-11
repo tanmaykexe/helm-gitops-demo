@@ -159,3 +159,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+envEnabled: false
+
+podEnvironment:
+  name: ENVIRONMENT
+  value: production
