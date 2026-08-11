@@ -1,4 +1,13 @@
-replicaCount: 5
+replicaCount: 4
+
+podEnvironment:
+  enabled: true
+  value: "production"
+
+image:
+  repository: nginx
+  tag: "1.27"
 
 service:
   type: ClusterIP
+  port: 80

@@ -1,8 +1,8 @@
-replicaCount: 2
+replicaCount: 3
 
 podEnvironment:
   enabled: true
-  value: "development"
+  value: "staging"
 
 image:
   repository: nginx

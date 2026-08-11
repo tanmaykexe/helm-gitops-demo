@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "my-nginx.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
 
   selector:
     matchLabels:
@@ -19,7 +17,6 @@ spec:
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-
       labels:
         {{- include "my-nginx.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
@@ -48,14 +45,25 @@ spec:
           {{- end }}
 
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-
-          {{- with .Values.podEnvironment }}
-          env:
-            - name: {{ .name }}
-              value: "{{ .value }}"
-          {{- end }}
-
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+          {{- if .Values.envEnabled }}
+          env:
+            - name: ENVIRONMENT
+              value: {{ .Values.podEnvironment.value | quote }}
+
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: my-nginx-db
+                  key: DB_USERNAME
+
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-nginx-db
+                  key: DB_PASSWORD
+          {{- end }}
 
           ports:
             - name: http
@@ -76,28 +84,3 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-
-          {{- with .Values.volumeMounts }}
-          volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-
-      {{- with .Values.volumes }}
-      volumes:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
