@@ -2,5 +2,8 @@ dependencies:
 - name: nginx
   repository: https://charts.bitnami.com/bitnami
   version: 25.0.2
-digest: sha256:2b20a438f20a6ecb1087a0075fbbf84828fe612ef88dd5b37244f39d5da84fd9
-generated: "2026-08-11T05:08:32.844537603Z"
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 20.6.2
+digest: sha256:79941d6cd635a7cb9f1f1c77a5d064c323a861edb57813f9e53663fd2d4c205e
+generated: "2026-08-12T04:59:57.280029059Z"

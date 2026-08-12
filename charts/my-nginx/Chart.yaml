@@ -27,3 +27,7 @@ dependencies:
   - name: nginx
     version: "25.0.2"
     repository: "https://charts.bitnami.com/bitnami"
+
+  - name: redis
+    version: "20.6.2"
+    repository: "https://charts.bitnami.com/bitnami"
