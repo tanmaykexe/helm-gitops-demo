@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: dev-project
+  namespace: argocd
+
+spec:
+  description: Development GitOps project
+
+  sourceRepos:
+    - https://github.com/tanmaykexe/helm-gitops-demo.git
+
+  destinations:
+    - namespace: nginx-dev
+      server: https://kubernetes.default.svc
