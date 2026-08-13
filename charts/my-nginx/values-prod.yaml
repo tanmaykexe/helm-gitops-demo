@@ -11,3 +11,7 @@ image:
 service:
   type: ClusterIP
   port: 80
+
+dbCredentials:
+  username: "produser"
+  password: "prodpassword"
