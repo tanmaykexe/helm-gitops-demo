@@ -15,3 +15,7 @@ service:
 dbCredentials:
   username: "devuser"
   password: "devpassword"
+
+nginx:
+  service:
+    type: ClusterIP
