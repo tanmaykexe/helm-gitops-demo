@@ -2,7 +2,7 @@ replicaCount: 2
 
 podEnvironment:
   enabled: true
-  value: "development-v2"
+  value: "development"
 
 image:
   repository: nginx
