@@ -13,3 +13,9 @@ spec:
   destinations:
     - namespace: nginx-dev
       server: https://kubernetes.default.svc
+
+  roles:
+    - name: dev-viewer
+      description: Read-only access to dev applications
+      policies:
+        - p, proj:dev-project:dev-viewer, applications, get, dev-project/*, allow
